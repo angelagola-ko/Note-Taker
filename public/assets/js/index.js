@@ -1,9 +1,14 @@
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
+
+
+console.log(window.location.pathname);
+//Grabs class from html
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
@@ -11,6 +16,14 @@ if (window.location.pathname === '/notes') {
   newNoteBtn = document.querySelector('.new-note');
   noteList = document.querySelectorAll('.list-container .list-group');
 }
+
+console.log(noteText);
+console.log(noteTitle);
+console.log(noteList);
+console.log(newNoteBtn);
+console.log(saveNoteBtn);
+
+
 
 // Show an element
 const show = (elem) => {
@@ -23,10 +36,13 @@ const hide = (elem) => {
 };
 
 // activeNote is used to keep track of the note in the textarea
-let activeNote = {};
+let activeNote = {
 
+};
+
+//
 const getNotes = () =>
-  fetch('/api/notes', {
+  fetch('api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +65,7 @@ const deleteNote = (id) =>
       'Content-Type': 'application/json',
     },
   });
-
+//hides save button until there is a note to save
 const renderActiveNote = () => {
   hide(saveNoteBtn);
 
@@ -65,13 +81,14 @@ const renderActiveNote = () => {
     noteText.value = '';
   }
 };
-
+//saves the note
 const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
   };
-  saveNote(newNote).then(() => {
+  saveNote(newNote).then(res => res.json()).then((res) => {
+    console.log('notes', res)
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -118,7 +135,8 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
-  let jsonNotes = await notes.json();
+  let jsonNotes = await notes.json() || [];
+  console.log('json', jsonNotes)
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
@@ -157,16 +175,19 @@ const renderNoteList = async (notes) => {
   if (jsonNotes.length === 0) {
     noteListItems.push(createLi('No saved Notes', false));
   }
+  else {
+    jsonNotes.forEach((note) => {
+      const li = createLi(note.title);
+      li.dataset.note = JSON.stringify(note);
 
-  jsonNotes.forEach((note) => {
-    const li = createLi(note.title);
-    li.dataset.note = JSON.stringify(note);
-
-    noteListItems.push(li);
-  });
-
+      noteListItems.push(li);
+    });
+  }
   if (window.location.pathname === '/notes') {
+    console.log(window.location.pathname);
+    console.log(noteListItems);
     noteListItems.forEach((note) => noteList[0].append(note));
+    console.log(noteList);
   }
 };
 
