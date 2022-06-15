@@ -5,8 +5,16 @@ body {
   padding: 0;
 }
 
+h1, h4, .list-group, .note-title, .note-textarea {
+  font-family: 'Shadows Into Light', cursive;
+}
+
 .save-note {
   display: none;
+}
+
+.nav-bg {
+  background-color: #726fa3 !important;
 }
 
 .icons i {
@@ -75,4 +83,8 @@ body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
+}
+
+.jumbotron {
+    background-color: #e9e7fd ;
 }

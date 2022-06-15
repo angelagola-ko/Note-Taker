@@ -66,11 +66,9 @@ router.delete('/api/notes/:id', (req,res) => {
     let dNote = deleteNotes.filter( item => item.id != req.params.id);
     fs.writeFileSync(joinNotes, JSON.stringify(dNote));
     res.json(dNote);
-    
 });
 
 // Open note after clicking on it.
-
 
 
 
