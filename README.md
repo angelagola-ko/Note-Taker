@@ -37,9 +37,9 @@
 
   #### Add title and description of notes, save notes for future use, and delete notes.
 
+  Click [here](https://intense-wave-12520.herokuapp.com/) for the deployed application on Heroku!
 
   ![Example Image](./public/assets/images/Note_Taker_Example.png)
-
 
   
   ## License
