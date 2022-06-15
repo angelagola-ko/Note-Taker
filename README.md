@@ -38,7 +38,7 @@
   #### Add title and description of notes, save notes for future use, and delete notes.
 
 
-  ![Example Image](./images/ExampleImg.png)
+  ![Example Image](./public/assets/images/Note_Taker_Example.png)
 
 
   
