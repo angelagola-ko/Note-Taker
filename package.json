@@ -5,7 +5,7 @@
     "uniqid": "^5.4.0"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "name": "note-taker",
   "description": "AS A small business owner\r I WANT to be able to write and save notes\r SO THAT I can organize my thoughts and keep track of tasks I need to complete",
